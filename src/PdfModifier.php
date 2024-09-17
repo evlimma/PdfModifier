@@ -11,7 +11,13 @@ class PdfModifier
     private $defaultFont;
     private $defaultFontSize;
 
-    // Construtor para inicializar o FPDI, carregar o PDF e definir fonte e tamanho
+    /**
+     * Construtor para inicializar o FPDI, carregar o PDF e definir fonte e tamanho
+     *
+     * @param [type] $sourcePdf
+     * @param string $font
+     * @param integer $fontSize
+     */
     public function __construct($sourcePdf, $font = 'Helvetica', $fontSize = 12)
     {
         $this->pdf = new Fpdi();
@@ -20,7 +26,17 @@ class PdfModifier
         $this->defaultFontSize = $fontSize;
     }
 
-    // Função para adicionar texto com opção de sobrescrever a fonte e o tamanho
+    /**
+     * Função para adicionar texto com opção de sobrescrever a fonte e o tamanho
+     *
+     * @param [type] $pageNo
+     * @param [type] $x
+     * @param [type] $y
+     * @param [type] $text
+     * @param [type] $font
+     * @param [type] $fontSize
+     * @return void
+     */
     public function addText($pageNo, $x, $y, $text, $font = null, $fontSize = null)
     {
         // Verifica se a página já foi carregada e se o número da página é válido
@@ -46,11 +62,17 @@ class PdfModifier
             // Adiciona o texto na página
             $this->pdf->Cell(0, 10, $text);
         } else {
-            throw new Exception("Número de página inválido: $pageNo");
+            throw new \Exception("Número de página inválido: $pageNo");
         }
     }
 
-    // Função para salvar ou exibir o PDF modificado
+    /**
+     * Função para salvar ou exibir o PDF modificado
+     *
+     * @param string $outputPath    - 'F' para salvar no servidor; 'I' para abrir no navegador
+     * @param string $fileName
+     * @return void
+     */
     public function outputPdf($outputPath = 'I', $fileName = 'arquivo_modificado.pdf')
     {
         $this->pdf->Output($outputPath, $fileName);
