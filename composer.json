@@ -1,0 +1,32 @@
+{
+    "name": "evlimma/pdfmodifier",
+    "description": "Add texts with font and size in pdf files | Adicionar textos com fonte e tamanho em arquivos pdf",
+    "type": "library",
+    "version": "1.0",
+    "keywords": [
+        "Evlimma",
+        "CodigoSpace",
+        "PDF",
+        "PDFModificar",
+        "PDFEditar"
+    ],
+    "homepage": "http://www.codigospace.com.br",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Everton Lima",
+            "email": "contato@codigospace.com.br",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "setasign/fpdf": "^1.8",
+        "setasign/fpdi": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "EvLimma\\PdfModifier\\": "src"
+        }
+    }
+}
