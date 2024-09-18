@@ -15,7 +15,7 @@ Adicionar textos com fonte e tamanho em arquivos pdf
 Data Layer is available via Composer:
 
 ```bash
-"evlimma/pdfmodifier": "1.0.0"
+"evlimma/pdfmodifier": "1.0.*"
 ```
 
 or run
