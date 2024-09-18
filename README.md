@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Omie PHP @evlimma
 
 Ease PHP integration with Omie
@@ -55,3 +56,7 @@ Thank you
 
 The MIT License (MIT). Please see [License File](https://github.com/evlimma/omieintegrate/blob/master/LICENSE) for more
 information.
+=======
+# PdfModifier
+Add texts with font and size in pdf files | Adicionar textos com fonte e tamanho em arquivos pdf
+>>>>>>> ae20c9ba1d2f2bacc38cd666689280bb979f2c06
