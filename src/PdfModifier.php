@@ -10,6 +10,8 @@ class PdfModifier
     private $pageCount;
     private $defaultFont;
     private $defaultFontSize;
+    private $defaultMaxWidth;
+    private $defaultBorder;
 
     /**
      * Construtor para inicializar o FPDI, carregar o PDF e definir fonte e tamanho
@@ -18,12 +20,14 @@ class PdfModifier
      * @param string $font
      * @param integer $fontSize
      */
-    public function __construct($sourcePdf, $font = 'Helvetica', $fontSize = 12)
+    public function __construct($sourcePdf, $font = 'Helvetica', $fontSize = 12, $maxWidth = 0, $border = 0)
     {
         $this->pdf = new Fpdi();
         $this->pageCount = $this->pdf->setSourceFile($sourcePdf);
         $this->defaultFont = $font;
         $this->defaultFontSize = $fontSize;
+        $this->defaultMaxWidth = $maxWidth;
+        $this->defaultBorder = $border;
     }
 
     /**
@@ -37,7 +41,7 @@ class PdfModifier
      * @param [type] $fontSize
      * @return void
      */
-    public function addText($pageNo, $x, $y, $text, $font = null, $fontSize = null)
+    public function addText($pageNo, $x, $y, $text, $font = null, $fontSize = null, $maxWidth = null, $border = null)
     {
         // Verifica se a página já foi carregada e se o número da página é válido
         if ($pageNo > 0 && $pageNo <= $this->pageCount) {
@@ -52,6 +56,8 @@ class PdfModifier
             // Usa a fonte e o tamanho fornecidos ou o padrão do construtor
             $currentFont = $font ?? $this->defaultFont;
             $currentFontSize = $fontSize ?? $this->defaultFontSize;
+            $currentMaxWidth = $maxWidth ?? $this->defaultMaxWidth;
+            $currentBorder = $border ?? $this->defaultBorder;
             
             // Define a fonte e o tamanho do texto
             $this->pdf->SetFont($currentFont, '', $currentFontSize);
@@ -60,7 +66,8 @@ class PdfModifier
             $this->pdf->SetXY($x, $y);
             
             // Adiciona o texto na página
-            $this->pdf->Cell(0, 10, mb_convert_encoding($text,"Windows-1252","UTF-8"));
+            //$this->pdf->Cell(179, 10, mb_convert_encoding($text,"Windows-1252","UTF-8"));
+            $this->pdf->MultiCell($currentMaxWidth, 5, mb_convert_encoding($text,"Windows-1252","UTF-8"), $currentBorder);
         } else {
             throw new \Exception("Número de página inválido: $pageNo");
         }
